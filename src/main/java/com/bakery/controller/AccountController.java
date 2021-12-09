@@ -1,5 +1,6 @@
 package com.bakery.controller;
 
+import com.bakery.entity.Grade;
 import com.bakery.entity.Member;
 import com.bakery.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class AccountController {
     @Autowired
     private MemberService memberService;
 
+    // 회원가입
     @GetMapping("/register")
     public String register() {
         return "/account/register";
@@ -26,5 +28,16 @@ public class AccountController {
         memberService.save(member);
         return "redirect:/";
     }
+
+    // 로그인
+    @GetMapping("/login")
+    public String login() {
+        return "/account/login";
+    }
+
+//    @PostMapping("/login")
+//    public String login(Member member) {
+//        return "/account/login";
+//    }
 
 }

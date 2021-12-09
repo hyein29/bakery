@@ -3,11 +3,12 @@ package com.bakery.entity;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "grade")
 @Data
 public class Grade {
 
@@ -15,7 +16,9 @@ public class Grade {
     @Column(name = "grade_no")
     private int gradeNo;
 
-    @NotNull
     private String name;
+
+    @OneToMany(mappedBy = "grade")
+    private List<Member> members = new ArrayList<>();
 
 }

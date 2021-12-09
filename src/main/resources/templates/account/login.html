@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+
+    <a th:href="@{/}">
+        <img src="https://i.pinimg.com/originals/a5/91/95/a59195335a8f74d947a641dae132e15b.jpg" width="60" height="60">
+    </a>
+    <h2>로그인</h2>
+
+    <div th:if="${param.error}" style="color: red" role="alert">
+        Invalid username and password.
+    </div>
+
+    <form th:action="@{/account/login}" method="post">
+        <input type="text" name="username" placeholder="username" required autofocus><br>
+        <input type="password" name="password" placeholder="password" required><br><br>
+        <input type="submit" value="login">
+    </form>
+
+</body>
+</html>

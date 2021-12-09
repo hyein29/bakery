@@ -16,30 +16,26 @@ public class Member {
 //    @Size(min = 5, max = 15, message = "ID는 5자 이상 15자 이하입니다.")
     private String username;
 
-    @NotNull
 //    @Size(min = 8, max = 15, message = "비밀번호는 8자 이상 15자 이하입니다.")
     private String password;
 
-    @NotNull
     private String name;
 
-    @Column(unique = true, nullable = false)
     private String email;
 
-    @NotNull
     private String phone;
 
-    @Column(name = "reg_date", nullable = false)
+    @Column(name = "reg_date")
     private Timestamp regDate;
 
     @Column(name = "unreg_date")
     private Timestamp unregDate;
 
-    @NotNull
     private boolean enabled;
 
+    // 외래키 설정
     @ManyToOne
     @JoinColumn(name = "grade_no")
-    private Grade gradeNo;
+    private Grade grade;
 
 }

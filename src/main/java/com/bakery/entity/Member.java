@@ -1,7 +1,10 @@
 package com.bakery.entity;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -10,6 +13,9 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "member")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
 
     @Id // primary key 설정
@@ -37,5 +43,15 @@ public class Member {
     @ManyToOne
     @JoinColumn(name = "grade_no")
     private Grade grade;
+
+    @Builder
+    public Member(String username, String password, String name,
+                  String email, String phone) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
 
 }

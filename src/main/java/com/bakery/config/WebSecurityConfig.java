@@ -22,16 +22,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/account/register", "/css/**", "/api/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/account/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .authorizeRequests() // 페이지 권한 설정
+                    .antMatchers("/", "/account/register", "/css/**", "/api/**", "/test").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin() // 로그인 설정
+                    .loginPage("/account/login")
+                    .permitAll()
+                    .and()
+                .logout()// 로그아웃 설정
+                    .permitAll();
     }
 
     @Bean

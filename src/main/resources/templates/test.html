@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+    <a th:href="@{/}">
+        <img src="https://i.pinimg.com/originals/a5/91/95/a59195335a8f74d947a641dae132e15b.jpg" width="60" height="60">
+    </a>
+    <h2>TEST</h2>
+
+    <form th:action="@{/test}" method="post">
+        <input type="text" name="id"><br>
+        <input type="text" name="userId"><br>
+        <input type="password" name="userPw"><br>
+        <input type="submit" value="Sign in">
+    </form>
+
+</body>
+</html>

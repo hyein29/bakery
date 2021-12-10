@@ -1,34 +1,27 @@
 package com.bakery.service;
 
-import com.bakery.entity.Grade;
+import com.bakery.dto.MemberDTO;
+import com.bakery.dto.TestMemberDTO;
 import com.bakery.entity.Member;
-import com.bakery.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import com.bakery.entity.TestMember;
 
-@Service
-public class MemberService {
+public interface MemberService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    public String save(MemberDTO dto);
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public Member save(Member member) {
-        // 비밀번호 암호화
-        String encodedPassword = passwordEncoder.encode(member.getPassword());
-        member.setPassword(encodedPassword);
-
-        member.setEnabled(true);
-
-        // default 회원 등급 = 1
-        Grade grade = new Grade();
-        grade.setGradeNo(1);
-        member.setGrade(grade);
-
-        return memberRepository.save(member);
+    default Member dtoToEntity(MemberDTO dto) {
+        Member entity = Member.builder()
+                .username(dto.getUsername())
+                .password(dto.getPassword())
+                .name(dto.getName())
+                .email(dto.getEmail())
+                .phone(dto.getPhone())
+                .unregDate(dto.getUnregDate())
+                .enabled(dto.isEnabled())
+                .grade(dto.getGrade())
+                .build();
+        return entity;
     }
+
 
 }

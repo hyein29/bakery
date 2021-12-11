@@ -25,12 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // 페이지 권한 설정
                     .antMatchers("/", "/account/register", "/css/**", "/api/**", "/test").permitAll()
                     .anyRequest().authenticated()
-                    .and()
-                .formLogin() // 로그인 설정
+                .and() // 로그인 설정
+                    .formLogin()
                     .loginPage("/account/login")
                     .permitAll()
-                    .and()
-                .logout()// 로그아웃 설정
+                .and() // 로그아웃 설정
+                    .logout()
                     .permitAll();
     }
 

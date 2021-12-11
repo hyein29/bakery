@@ -37,11 +37,11 @@ public class AccountController {
         return "redirect:/";
     }
 
-    // 로그인 페이지
-    @GetMapping("/login")
-    public String login() {
-        return "/account/login";
-    }
+//    // 로그인 페이지
+//    @GetMapping("/login")
+//    public String login() {
+//        return "/account/login";
+//    }
 
 //    @PostMapping("/login")
 //    public String login(Member member) {

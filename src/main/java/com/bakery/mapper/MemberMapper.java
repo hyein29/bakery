@@ -3,10 +3,10 @@ package com.bakery.mapper;
 import com.bakery.dto.MemberDTO;
 import com.bakery.entity.Member;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring")
-public interface MemberMapper extends GenericMapper<MemberDTO, Member> {
+@Mapper(componentModel = "spring", uses = {}, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface MemberMapper extends EntityMapper<MemberDTO, Member> {
 
 //    MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);
 //

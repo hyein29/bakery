@@ -10,13 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sound.midi.Soundbank;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 
     @Autowired
     MemberRepository memberRepository;
 
-    @Autowired(required=false)
+    @Autowired
     MemberMapper memberMapper;
 
     @Autowired
@@ -35,8 +37,11 @@ public class MemberServiceImpl implements MemberService{
         grade.setGradeNo(1);
         dto.setGrade(grade);
 
+        System.out.println(dto);
+
 //        Member entity = dtoToEntity(dto);
         Member entity = memberMapper.toEntity(dto);
+        System.out.println(entity);
         memberRepository.save(entity);
 
         return entity.getUsername();

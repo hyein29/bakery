@@ -6,10 +6,9 @@ import com.bakery.entity.Member;
 import com.bakery.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/account")
@@ -32,16 +31,16 @@ public class AccountController {
 
     // 회원가입 처리
     @PostMapping("/register")
-    public String register(MemberDTO dto) {
+    public String register(@ModelAttribute MemberDTO dto, HttpServletResponse response) {
         memberService.save(dto);
         return "redirect:/";
     }
 
-//    // 로그인 페이지
-//    @GetMapping("/login")
-//    public String login() {
-//        return "/account/login";
-//    }
+    // 로그인 페이지
+    @GetMapping("/login")
+    public String login() {
+        return "/account/login";
+    }
 
 //    @PostMapping("/login")
 //    public String login(Member member) {

@@ -1,17 +1,14 @@
 package com.bakery.dto;
 
 import com.bakery.entity.Grade;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor // 기본 생성자 필수
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MemberDTO {
 
     private String username;
@@ -23,6 +20,5 @@ public class MemberDTO {
     private Timestamp unregDate;
     private boolean enabled;
     private Grade grade;
-
 
 }

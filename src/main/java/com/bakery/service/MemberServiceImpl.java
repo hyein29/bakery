@@ -3,6 +3,7 @@ package com.bakery.service;
 import com.bakery.dto.MemberDTO;
 import com.bakery.entity.Grade;
 import com.bakery.entity.Member;
+import com.bakery.mapper.MemberMapper;
 import com.bakery.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +15,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired(required=false)
+    MemberMapper memberMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,7 +35,8 @@ public class MemberServiceImpl implements MemberService{
         grade.setGradeNo(1);
         dto.setGrade(grade);
 
-        Member entity = dtoToEntity(dto);
+//        Member entity = dtoToEntity(dto);
+        Member entity = memberMapper.toEntity(dto);
         memberRepository.save(entity);
 
         return entity.getUsername();

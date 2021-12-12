@@ -42,10 +42,10 @@ public class AccountController {
         return "/account/login";
     }
 
-//    @PostMapping("/login")
-//    public String login(Member member) {
-//        return "/account/login";
-//    }
+    @PostMapping("/login")
+    public String login(Member member) {
+        return "/account/login";
+    }
 
 //    // 로그인 결과 페이지
 //    @GetMapping("/login/result")

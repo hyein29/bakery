@@ -1,11 +1,10 @@
 package com.bakery.service;
 
 import com.bakery.dto.MemberDTO;
-import com.bakery.entity.Member;
 
 public interface MemberService {
 
-    public String save(MemberDTO dto);
+    public String save(MemberDTO memberDTO);
 
 //    default Member dtoToEntity(MemberDTO dto) {
 //        Member entity = Member.builder()

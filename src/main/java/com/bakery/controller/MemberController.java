@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/member")
+public class MemberController {
 
     @Autowired
     private MemberService memberService;
@@ -20,14 +20,8 @@ public class AccountController {
     // 회원가입 페이지
     @GetMapping("/register")
     public String register() {
-        return "/account/register";
+        return "/member/register";
     }
-
-//    @PostMapping("/register")
-//    public String register(Member member) {
-//        memberService.save(member);
-//        return "redirect:/";
-//    }
 
     // 회원가입 처리
     @PostMapping("/register")
@@ -39,12 +33,13 @@ public class AccountController {
     // 로그인 페이지
     @GetMapping("/login")
     public String login() {
-        return "/account/login";
+        return "/member/login";
     }
 
+    // 로그인 처리
     @PostMapping("/login")
     public String login(Member member) {
-        return "/account/login";
+        return "/member/login";
     }
 
 //    // 로그인 결과 페이지

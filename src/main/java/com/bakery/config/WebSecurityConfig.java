@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,17 +23,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .formLogin()
+                    .loginPage("/member/login") // 로그인 설정
+                    .permitAll()
+                .and()
+                    .logout() // 로그아웃 설정
+                    .permitAll();
+
+        http
                 .csrf().disable()
                 .authorizeRequests() // 페이지 권한 설정
-                    .antMatchers("/", "/account/register", "/css/**", "/api/**", "/test").permitAll()
-                    .anyRequest().authenticated()
-                .and() // 로그인 설정
-                    .formLogin()
-                    .loginPage("/account/login")
-                    .permitAll()
-                .and() // 로그아웃 설정
-                    .logout()
-                    .permitAll();
+                    .antMatchers("/", "/member/register",
+                                 "/api/**", "/test").permitAll()
+                    .mvcMatchers("/admin/**").hasRole("ADMIN")
+                    .anyRequest().authenticated();
+
+        http // 인증되지 않은 사용자가 리소스에 접근했을 때 수행되는 핸들러
+                .exceptionHandling()
+                .authenticationEntryPoint
+                        (new CustomAuthenticationEntryPoint());
+
+    }
+
+    @Override // static 디렉토리의 하위 파일은 인증을 무시하도록 설정
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
     }
 
     @Autowired

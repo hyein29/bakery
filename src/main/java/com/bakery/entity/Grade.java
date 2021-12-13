@@ -14,7 +14,7 @@ public class Grade {
 
     @Id
     @Column(name = "grade_no")
-    private int gradeNo;
+    private Integer gradeNo;
 
     private String name;
 

@@ -1,10 +1,7 @@
 package com.bakery.dto;
 
-import com.bakery.entity.ItemCategory;
 import com.bakery.entity.Member;
 import lombok.*;
-
-import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -13,6 +10,7 @@ import java.sql.Timestamp;
 public class CartDTO {
 
     private Integer cartId;
+//    private Member member;
     private String username;
 
 }

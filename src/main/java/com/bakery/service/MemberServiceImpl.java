@@ -18,9 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -62,15 +59,16 @@ public class MemberServiceImpl implements MemberService{
         memberRepository.save(member);
 
         // 회원가입 시 MEMBER 권한 부여
-        AuthorityDTO authorityDTO = new AuthorityDTO();
-        authorityDTO.setUsername(memberDTO.getUsername());
-        authorityDTO.setAuth("ROLE_MEMBER");
-        Authority authority = authorityMapper.toEntity(authorityDTO);
-        authorityRepository.save(authority);
+//        AuthorityDTO authorityDTO = new AuthorityDTO();
+//        authorityDTO.setUsername(memberDTO.getUsername());
+//        authorityDTO.setAuth("ROLE_MEMBER");
+//        Authority authority = authorityMapper.toEntity(authorityDTO);
+//        authorityRepository.save(authority);
 
         // 회원가입 시 cart table에 등록
         CartDTO cartDTO = new CartDTO();
         System.out.println("=================================="+memberDTO.getUsername());
+//        cartDTO.setMember(member);
         cartDTO.setUsername(memberDTO.getUsername());
         Cart cart = cartMapper.toEntity(cartDTO);
         cartRepository.save(cart);

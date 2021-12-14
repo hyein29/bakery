@@ -3,6 +3,7 @@ package com.bakery.controller;
 import com.bakery.dto.MemberDTO;
 import com.bakery.entity.Grade;
 import com.bakery.entity.Member;
+import com.bakery.service.CartService;
 import com.bakery.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private CartService cartService;
 
     // 회원가입 페이지
     @GetMapping("/register")
